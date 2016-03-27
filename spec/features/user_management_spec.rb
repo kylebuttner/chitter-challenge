@@ -14,6 +14,14 @@ feature 'sign up' do
     sign_up('Mike', 'mike@gmail.com', 'goodfriday',
             'goodfriday', 'mikey')
     expect { sign_up('Mike', 'mike@gmail.com', 'goodfriday',
+            'goodfriday', 'notmikey') }.not_to change(User, :count)
+    # expect(page).to have_content 'That email is already in use'
+  end
+
+  scenario 'user must use unique username' do
+    sign_up('Mike', 'mike@gmail.com', 'goodfriday',
+            'goodfriday', 'mikey')
+    expect { sign_up('Mike', 'notmike@gmail.com', 'goodfriday',
             'goodfriday', 'mikey') }.not_to change(User, :count)
     # expect(page).to have_content 'That email is already in use'
   end
