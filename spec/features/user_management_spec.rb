@@ -5,6 +5,11 @@ feature 'sign up' do
     expect(page).to have_content 'Welcome, Mike!'
   end
 
+  scenario 'password confirmation much match password' do
+    expect { sign_up('Mike', 'mike@gmail.com', 'goodfriday',
+            'wrong', 'mikey') }.not_to change(User, :count)
+  end
+
   scenario 'user must use unique email address' do
     sign_up('Mike', 'mike@gmail.com', 'goodfriday',
             'goodfriday', 'mikey')
