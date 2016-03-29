@@ -17,6 +17,8 @@ class User
 
   validates_confirmation_of :password
 
+  has n, :peeps
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
@@ -31,7 +33,3 @@ class User
     end
   end
 end
-
-DataMapper.setup(:default, 'postgres://localhost/chitter_test')
-DataMapper.finalize
-DataMapper.auto_upgrade!
