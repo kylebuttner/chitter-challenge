@@ -8,3 +8,4 @@ require './app/models/user.rb'
 
 require_relative 'server'
 require_relative 'controllers/users'
+require_relative 'controllers/sessions'

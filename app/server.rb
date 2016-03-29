@@ -5,7 +5,7 @@ class Chitter < Sinatra::Base
   enable :partial_underscores
 
   get '/' do
-    'Hello chitter! Welcome, Mike!'
+    erb :index
   end
 
 end

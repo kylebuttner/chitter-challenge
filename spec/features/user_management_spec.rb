@@ -38,3 +38,37 @@ feature 'sign up' do
 
   #make sure required fields are required
 end
+
+feature 'sign in' do
+  let(:user) do
+    User.create(username: 'test',
+                name: 'test',
+                email: 'test@test.com',
+                password: 'test',
+                password_confirmation: 'test')
+  end
+
+  scenario 'with correct credentials' do
+    sign_in('mikey','goodfriday')
+    expect(page).to have_content "Welcome, #{user.username}!"
+  end
+
+feature 'sign out' do
+
+  before(:each) do
+    User.create(username: 'test',
+                name: 'test',
+                email: 'test@test.com',
+                password: 'test',
+                password_confirmation: 'test')
+  end
+
+  scenario 'while being signed in' do
+    sign_in('test', 'test')
+    click_button 'Sign out'
+    expect(page).to have_content('goodbye!')
+    expect(page).not_to have_content('Welcome, test@test.com')
+  end
+
+end
+end
