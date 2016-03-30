@@ -3,6 +3,9 @@
   <input type='submit' value='Post peep'>
 </form>
 
-<% @peeps.each do |peep| %>
-  <%= peep.peep %>
+<% @peeps.reverse.each do |peep| %>
+  <ul>
+    <li><%= peep.peep %></li>
+    <li>Posted by <%= User.get(peep.user_id).username %></li>
+  </ul>
 <% end %>
